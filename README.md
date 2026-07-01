@@ -108,40 +108,21 @@ python -m app.workers.kafka_consumer
 ```bash
 docker exec -it test-task-redpanda-1 rpk topic produce leads.events.v1
 ```
-Ввести JSON и нажать Enter
+Ввести одной строкой и нажать Enter:
 
 ```json
-{
-  "event_id": "550e8400-e29b-41d4-a716-446655440000",
-  "event_type": "lead_created.v1",
-  "aggregate_id": "87dbacbf-7682-48be-b64c-b78f644a1476",
-  "occurred_at": "2026-06-26T10:00:00Z",
-  "payload": {
-    "lead_id": "87dbacbf-7682-48be-b64c-b78f644a1476",
-    "name": "Иван",
-    "phone": "+79991234567",
-    "source": "landing"
-  }
-}
+{"event_id":"550e8400-e29b-41d4-a716-446655440000","event_type":"lead_created.v1","aggregate_id":"87dbacbf-7682-48be-b64c-b78f644a1476","occurred_at":"2026-06-26T10:00:00Z","payload":{"lead_id":"87dbacbf-7682-48be-b64c-b78f644a1476","name":"Иван","phone":"+79991234567","source":"landing"}}
 ```
+
 ## Пример ручной отправки moderation события
 
 ```bash
 docker exec -it test-task-redpanda-1 rpk topic produce lead_moderation.events.v1
 ```
+Ввести одной строкой и нажать Enter:
 
 ```json
-{
-  "event_id": "660e8400-e29b-41d4-a716-446655440001",
-  "event_type": "lead_moderation_finished.v1",
-  "aggregate_id": "87dbacbf-7682-48be-b64c-b78f644a1476",
-  "occurred_at": "2026-06-26T10:05:00Z",
-  "payload": {
-    "lead_id": "70aafd2e-9bc2-409c-b8ec-a5bfaefbc159",
-    "approved": true,
-    "reason": null
-  }
-}
+{"event_id":"660e8400-e29b-41d4-a716-446655440002","event_type":"lead_moderation_finished.v1","aggregate_id":"70aafd2e-9bc2-409c-b8ec-a5bfaefbc159","occurred_at":"2026-06-26T10:05:00Z","payload":{"lead_id":"70aafd2e-9bc2-409c-b8ec-a5bfaefbc159","approved":true,"reason":null}}
 ```
 
 ## Что сделано
