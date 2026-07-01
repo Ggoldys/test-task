@@ -62,7 +62,7 @@ python -m app.workers.kafka_consumer
 
 | Переменная | Значение по умолчанию | Описание |
 |---|---|---|
-| `DATABASE_URL` | `postgresql+asyncpg://postgres:1111@localhost:5432/test_leads` | Подключение к PostgreSQL |
+| `DATABASE_URL` | `postgresql+asyncpg://postgres:1111@localhost:5433/test_leads` | Подключение к PostgreSQL |
 | `KAFKA_BOOTSTRAP_SERVERS` | `localhost:19092` | Адрес Kafka/Redpanda |
 | `KAFKA_LEADS_TOPIC` | `leads.events.v1` | Топик для исходящих событий |
 | `KAFKA_MODERATION_TOPIC` | `lead_moderation.events.v1` | Топик для входящих событий |
@@ -112,12 +112,12 @@ docker exec -it test-task-redpanda-1 rpk topic produce leads.events.v1
 
 ```json
 {
-  "event_id": "uuid",
+  "event_id": "550e8400-e29b-41d4-a716-446655440000",
   "event_type": "lead_created.v1",
-  "aggregate_id": "lead_id",
+  "aggregate_id": "87dbacbf-7682-48be-b64c-b78f644a1476",
   "occurred_at": "2026-06-26T10:00:00Z",
   "payload": {
-    "lead_id": "uuid",
+    "lead_id": "87dbacbf-7682-48be-b64c-b78f644a1476",
     "name": "Иван",
     "phone": "+79991234567",
     "source": "landing"
@@ -132,12 +132,12 @@ docker exec -it test-task-redpanda-1 rpk topic produce lead_moderation.events.v1
 
 ```json
 {
-  "event_id": "uuid",
+  "event_id": "660e8400-e29b-41d4-a716-446655440001",
   "event_type": "lead_moderation_finished.v1",
-  "aggregate_id": "lead_id",
+  "aggregate_id": "87dbacbf-7682-48be-b64c-b78f644a1476",
   "occurred_at": "2026-06-26T10:05:00Z",
   "payload": {
-    "lead_id": "uuid",
+    "lead_id": "70aafd2e-9bc2-409c-b8ec-a5bfaefbc159",
     "approved": true,
     "reason": null
   }
